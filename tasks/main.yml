@@ -1,0 +1,21 @@
+---
+# tasks file for thp
+- name: Copy the disable-transparent-hugepages to the host
+  copy:
+    src: disable-transparent-hugepages
+    dest: /etc/init.d/
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Enable the service
+  become: yes
+  systemd:
+    name: disable-transparent-hugepages
+    enabled: yes
+
+- name: Start the service
+  become: yes
+  systemd:
+    name: disable-transparent-hugepages
+    state: started

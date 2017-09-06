@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: thp_centos
+    image: centos/systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: thp_debian_jessie
+    image: dramaturg/debian-systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: thp_ubuntu_xenial
+    image: solita/ubuntu-systemd
+    privileged: True
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  options:
+    e: force_docker=yes
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
