@@ -1,0 +1,17 @@
+# Molecule managed
+
+---
+all:
+  hosts:
+    thp_centos: &id001
+      ansible_connection: docker
+    thp_debian_jessie: &id002
+      ansible_connection: docker
+    thp_ubuntu_xenial: &id003
+      ansible_connection: docker
+ungrouped:
+  hosts:
+    thp_centos: *id001
+    thp_debian_jessie: *id002
+    thp_ubuntu_xenial: *id003
+  vars: {}

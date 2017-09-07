@@ -1,2 +1,5 @@
 .*sw*
 .rope*
+__pycache__
+state.yml
+*pyc
